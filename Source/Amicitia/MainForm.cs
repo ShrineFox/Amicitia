@@ -14,10 +14,12 @@ using System.Numerics;
 using Amicitia.Utilities;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using MetroSet_UI.Enums;
+using MetroSet_UI.Forms;
 
 namespace Amicitia
 {
-    internal partial class MainForm : Form
+    internal partial class MainForm : MetroSetForm
     {
         //private static Rectangle _lastMainTreeViewSize;
         private static MainForm mInstance;
@@ -37,7 +39,7 @@ namespace Amicitia
             }
         }
 
-        public static TreeView MainTreeView => Instance.mainTreeView;
+        public static TreeView MainTreeView => mainTreeView;
 
         public static PropertyGrid MainPropertyGrid => Instance.mainPropertyGrid;
 
@@ -56,6 +58,7 @@ namespace Amicitia
             else
                 NativeMethods.AllocConsole();
 #endif
+            mainPictureBox.BackColor = Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
         }
 
         // Events
@@ -116,6 +119,7 @@ namespace Amicitia
 
             if (mViewer != null)
             {
+                mViewer.BgColor = Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
                 if (resWrap.FileType == SupportedFileType.RmdScene || resWrap.FileType == SupportedFileType.RwClumpNode || resWrap.FileType == SupportedFileType.RwGeometryNode || resWrap.FileType == SupportedFileType.RwAtomicNode)
                 {
                     glControl1.Visible = true;
@@ -138,7 +142,9 @@ namespace Amicitia
                                         var parentResWrap = ( IResourceWrapper )node;
                                         var parentScene = parentResWrap.Resource as RmdScene;
                                         if ( parentScene.HasTextureDictionary )
-                                            mViewer.LoadTextures( parentScene.TextureDictionary );
+                                        {
+                                            mViewer.LoadTextures(parentScene.TextureDictionary);
+                                        }
                                     }
                                 }
                             }
@@ -274,7 +280,7 @@ namespace Amicitia
             mainTreeView.AfterLabelEdit += MainTreeViewAfterLabelEditEventHandler;
             mainTreeView.NodeMouseClick += MainTreeViewNodeMouseClickEventHandler;
             //mainTreeView.SizeChanged += MainTreeView_SizeChanged;
-            mainTreeView.AllowDrop = true;
+            mainTreeView.AllowDrop = false;
             mainTreeView.DragDrop += MainFormDragDropEventHandler;
             mainTreeView.DragEnter += MainFormDragEnterEventHandler;
             
@@ -379,6 +385,17 @@ namespace Amicitia
                 mainTreeView.SelectedNode = mainTreeView.TopNode;
             }
             mainTreeView.EndUpdate();
+
+            mainTreeView.Select();
+            if (mainTreeView.Nodes.Count > 0)
+            {
+                mainTreeView.SelectedNode = mainTreeView.Nodes[0];
+                mainTreeView.SelectedNode.Expand();
+                
+                if (mainTreeView.Nodes[0].Nodes.Count > 0)
+                    for (int i = 0; i < mainTreeView.SelectedNode.Nodes.Count; i++)
+                        mainTreeView.SelectedNode.Nodes[i].Expand();
+            }
 
             AddRecentlyOpenedFile(path);
         }
