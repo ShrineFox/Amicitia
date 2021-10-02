@@ -25,6 +25,7 @@ namespace Amicitia
         //private static Rectangle _lastMainTreeViewSize;
         private static MainForm mInstance;
         private ModelViewer.ModelViewer mViewer;
+        public static string openedPath;
 
         public static MainForm Instance
         {
@@ -236,16 +237,15 @@ namespace Amicitia
 
         private void SaveToolStripMenuItemClickEventHandler(object sender, EventArgs e)
         {
-            if ( mainTreeView.Nodes.Count == 0 )
+            if (mainTreeView.Nodes.Count == 0)
                 return;
 
             var wrapper = (IResourceWrapper)mainTreeView.Nodes[0];
-            var path = openToolStripMenuItem.DropDownItems[openToolStripMenuItem.DropDownItems.Count - 1].Text;
 
-            if ( wrapper.Export( path, wrapper.FileType ) )
+            if (wrapper.Export(openedPath, wrapper.FileType))
             {
-                using ( var centeringService = new DialogCenteringService( this ) )
-                    MessageBox.Show( "File has been saved successfully.", "Success" );
+                using (var centeringService = new DialogCenteringService(this))
+                    MessageBox.Show("File has been saved successfully.", "Success");
             }
         }
 
@@ -397,14 +397,7 @@ namespace Amicitia
                     for (int i = 0; i < mainTreeView.SelectedNode.Nodes.Count; i++)
                         mainTreeView.SelectedNode.Nodes[i].Expand();
             }
-
-            AddRecentlyOpenedFile(path);
-        }
-
-        private void AddRecentlyOpenedFile(string path)
-        {
-            var item = openToolStripMenuItem.DropDownItems.Add(path);
-            item.Click += (o, s) => { OpenFile(path); };
+            openedPath = path;
         }
 
         private void GlControl1_Load(object sender, EventArgs e)
@@ -452,6 +445,11 @@ namespace Amicitia
             options.Controls.Add(colorlab);
             options.Controls.Add(more);
             options.ShowDialog(this);
+        }
+
+        private void CloseToolStripMenuItemClickEventHandler(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 

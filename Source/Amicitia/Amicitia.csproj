@@ -175,6 +175,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Igoricon.ico" />
+    <None Include="Resources\disk.bmp" />
+    <None Include="Resources\cross.bmp" />
     <None Include="Resources\icon.ico" />
     <EmbeddedResource Include="shader.fs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
