@@ -52,7 +52,7 @@
             this.closeToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
-            this.mainMenuStrip.Size = new System.Drawing.Size(153, 28);
+            this.mainMenuStrip.Size = new System.Drawing.Size(305, 30);
             this.mainMenuStrip.TabIndex = 0;
             this.mainMenuStrip.Text = "menuStrip1";
             // 
@@ -63,7 +63,7 @@
             this.fileToolStripMenuItem.Image = global::Amicitia.Properties.Resources.disk;
             this.fileToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(70, 26);
             this.fileToolStripMenuItem.Text = "Save";
             this.fileToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItemClickEventHandler);
             // 
@@ -71,10 +71,10 @@
             // 
             this.closeToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.closeToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
-            this.closeToolStripMenuItem.Image = global::Amicitia.Properties.Resources.cross;
+            this.closeToolStripMenuItem.Image = global::Amicitia.Properties.Resources.cross1;
             this.closeToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(75, 26);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItemClickEventHandler);
             // 
