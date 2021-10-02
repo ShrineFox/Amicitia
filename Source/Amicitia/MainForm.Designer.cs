@@ -182,11 +182,13 @@
             this.Controls.Add(this.mainPictureBox);
             this.Controls.Add(this.mainPropertyGrid);
             this.Controls.Add(mainTreeView);
+            this.DropShadowEffect = false;
             this.HeaderHeight = -50;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mainMenuStrip;
             this.MinimumSize = new System.Drawing.Size(662, 569);
             this.Name = "MainForm";
+            this.Opacity = 0D;
             this.Padding = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.ShowHeader = true;
             this.ShowLeftRect = false;
@@ -208,7 +210,6 @@
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        public static System.Windows.Forms.TreeView mainTreeView;
         private System.Windows.Forms.PropertyGrid mainPropertyGrid;
         private System.Windows.Forms.PictureBox mainPictureBox;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
@@ -216,6 +217,7 @@
         private OpenTK.GLControl glControl1;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        public static System.Windows.Forms.TreeView mainTreeView;
 
         public object MetroFramework { get; private set; }
     }
